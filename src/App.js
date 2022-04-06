@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from "react";
+import './style.css';
+import axios from "axios";
+import TodoList from "./TodoList";
+import AddList from "./AddList";
+import { Context } from "./Context.js";
 
 function App() {
+  
+  const [todos, setTodos] = useState()
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(()=>{
+    axios.get(`https://624c0ef871e21eebbcf97463.mockapi.io/todos`)
+    .then(res => {
+      if(!res.statisText ==="OK"){
+        throw Error('could not fetch the data')
+      }
+      setTodos(res.data);
+      setIsPending(false);
+      setError(null)
+    })
+    .catch(err => {
+      setIsPending(false);
+      setError(err.message);
+    })
+  },[]) ;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Context.Provider value={[todos, setTodos]}>
+      <AddList/>
+      {error && <div>{error}</div>}
+      {isPending && <div>Loading...</div> }
+     { todos && <TodoList todo = {todos} /> }
+      </Context.Provider>
     </div>
   );
 }

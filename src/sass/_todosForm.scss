@@ -1,0 +1,27 @@
+.todosForm {
+    margin: 50px auto;
+
+    &__label {
+        font-size: 24px;
+    }
+
+    &__input {
+        -webkit-appearance: none;
+        appearance: none;
+
+        margin-left: 5px;
+        background-color: $whiteGray;
+        border-radius: 10px;
+        height: 25px;
+    }
+
+    &__button {
+        -webkit-appearance: none;
+        appearance: none;
+
+        background-color: $gray;
+        border-radius: 10px;
+        padding: 5px;
+        margin-left: 10px;
+    }
+}
