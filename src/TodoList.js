@@ -3,7 +3,7 @@ import TodoDetails from './TodoDetails';
 import { Context } from "./Context";
 
 export default React.memo(function TodoList() {
-  const [todos, setTodos] = useContext(Context);
+  const [todos] = useContext(Context);
   
   return (
        <ul className='todos'>

@@ -33,7 +33,7 @@ function App() {
       <AddList/>
       {error && <div>{error}</div>}
       {isPending && <div>Loading...</div> }
-     { todos && <TodoList todo = {todos} /> }
+     { todos && <TodoList /> }
       </Context.Provider>
     </div>
   );

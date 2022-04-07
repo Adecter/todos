@@ -16,11 +16,14 @@ export default function AddList() {
     const  handleSubmit = event => {
         event.preventDefault();
         axios.post(`https://624c0ef871e21eebbcf97463.mockapi.io/todos`,  name )
-
+        .then(()=>{
           axios.get(`https://624c0ef871e21eebbcf97463.mockapi.io/todos`)
           .then(res => {
               setTodos(res.data)
           })
+        })
+
+          
       }
 
   return (

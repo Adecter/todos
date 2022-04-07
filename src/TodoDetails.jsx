@@ -9,11 +9,14 @@ export default function TodoDetails({id, name, date, done}) {
 
  const handleClick = () => {
     axios.delete(`https://624c0ef871e21eebbcf97463.mockapi.io/todos/${id}`)
+    .then(()=>{
+      axios.get(`https://624c0ef871e21eebbcf97463.mockapi.io/todos`)
+      .then(res => {
+          setTodos(res.data)
+      })
+    })
 
-    axios.get(`https://624c0ef871e21eebbcf97463.mockapi.io/todos`)
-          .then(res => {
-              setTodos(res.data)
-          })
+    
  }
 
  const handleChange = (status) => {
