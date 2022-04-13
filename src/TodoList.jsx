@@ -7,7 +7,7 @@ export default React.memo(function TodoList() {
   
   return (
        <ul className='todos'>
-        {todos && todos.map(todo => <li className='todos__item' key={todo.id+todo.name}><TodoDetails id={todo.id} name={todo.name} date={todo.createdAt} done={todo.done} /></li>)}
+        {todos && todos instanceof Error ? <div> {todos.message.toString()} </div> : todos.map(todo => <li className='todos__item' key={todo.id+todo.name}><TodoDetails id={todo.id} name={todo.name} date={todo.createdAt} done={todo.done} /></li>)}
       </ul>
   )
 

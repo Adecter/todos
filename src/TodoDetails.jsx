@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState,useContext } from 'react';
 import { Context } from "./Context";
+import  dataFetch from './dataFetch';
 
 export default function TodoDetails({id, name, date, done}) {
   const [check, setCheck] = useState(done)
@@ -10,9 +11,8 @@ export default function TodoDetails({id, name, date, done}) {
  const handleClick = () => {
     axios.delete(`https://624c0ef871e21eebbcf97463.mockapi.io/todos/${id}`)
     .then(()=>{
-      axios.get(`https://624c0ef871e21eebbcf97463.mockapi.io/todos`)
-      .then(res => {
-          setTodos(res.data)
+      dataFetch().then((data)=>{
+        setTodos(data)
       })
     })
 
